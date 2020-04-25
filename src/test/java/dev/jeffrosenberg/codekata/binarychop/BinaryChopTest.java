@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static dev.jeffrosenberg.codekata.binarychop.BinaryChop.chop;
+import static dev.jeffrosenberg.codekata.binarychop.BinaryChop.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
@@ -15,8 +15,14 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 public class BinaryChopTest {
     @ParameterizedTest
     @MethodSource("binarySearchTestCases")
-    void binarySearchParameterizedTest(int expected, int searchTarget, int[] sortedSearchArray) {
+    void binarySearchChopTest(int expected, int searchTarget, int[] sortedSearchArray) {
         assertEquals(expected, chop(searchTarget, sortedSearchArray));
+    }
+
+    @ParameterizedTest
+    @MethodSource("binarySearchTestCases")
+    void binarySearchChopRecursiveTest(int expected, int searchTarget, int[] sortedSearchArray) {
+        assertEquals(expected, chop_recursive(searchTarget, sortedSearchArray));
     }
 
     static Stream<Arguments> binarySearchTestCases() {
